@@ -1,0 +1,53 @@
+﻿=== SYNTHETIC HMM DATA GENERATOR & TESTER ===
+Generating synthetic flight of length 10000 from TRUE matrices (K=3)...
+Generated 10000 symbols.
+  Symbol 0: 3140 (31.40%)
+  Symbol 1: 3649 (36.49%)
+  Symbol 2: 3211 (32.11%)
+
+States occupancy (ground truth):
+  State 0: 2825 instances
+  State 1: 4218 instances
+  State 2: 2957 instances
+
+--- Training on Synthetic Data (multi-restart) ---
+  K= 2 | Best Log-Likelihood: -10589.50
+  K= 3 | Best Log-Likelihood: -10477.10
+  K= 4 | Best Log-Likelihood: -10470.92
+  K= 5 | Best Log-Likelihood: -10463.90
+  K= 6 | Best Log-Likelihood: -10460.00
+
+--- Running IETE Subsampling KL Divergence with Penalty ---
+
+=== IETE Model Selection Results on Synthetic Data ===
+  K = 2 | Mean KL: 0.001452 | LogLikelihood: -10589.5 | Score: 21180.4
+  K = 3 | Mean KL: 0.003085 | LogLikelihood: -10477.1 | Score: 20957.3
+  K = 4 | Mean KL: 0.008227 | LogLikelihood: -10470.9 | Score: 20950.1
+  K = 5 | Mean KL: 0.014492 | LogLikelihood: -10463.9 | Score: 20942.3  <-- OPTIMUM MODEL
+  K = 6 | Mean KL: 0.045476 | LogLikelihood: -10460.0 | Score: 20965.5
+
+Since the true data WAS generated with K=3, the method optimally should choose K=3!
+
+=== Comparing Learned K=3 Matrices to Ground Truth ===
+True A matrix:
+[[0.8  0.15 0.05]
+ [0.1  0.8  0.1 ]
+ [0.05 0.15 0.8 ]]
+Learned A matrix (from K=3 testing):
+[[0.7944 0.1303 0.0753]
+ [0.0839 0.8283 0.0877]
+ [0.067  0.1366 0.7964]]
+
+True B matrix:
+[[0.7 0.2 0.1]
+ [0.2 0.6 0.2]
+ [0.1 0.2 0.7]]
+Learned B matrix (from K=3 testing):
+[[0.7272 0.1971 0.0757]
+ [0.1937 0.5785 0.2278]
+ [0.1066 0.2    0.6934]]
+
+=== Viterbi Decoding against Ground Truth ===
+State recovery accuracy: 70.75% (considering state permutations)
+
+Successfully tested custom synthetic generation and hmmlearn quantized approach!
